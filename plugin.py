@@ -6,7 +6,7 @@ Version:    0.0.1: alpha
             0.0.2: beta
 """
 """
-<plugin key="AC Boiler Control Lite" name="AC Central heating on/off request" author="Erwanweb" version="0.0.2" externallink="https://github.com/Erwanweb/ACSS.git">
+<plugin key="AC Boiler Control Lite" name="AC Central heating on/off request" author="Erwanweb" version="0.0.2" externallink="https://github.com/Erwanweb/BoilerCLite.git">
     <description>
         <h2>Boiler control for SVT TRV</h2><br/>
         Easily control boiler from heating request from multi zone SVT TRV<br/>
