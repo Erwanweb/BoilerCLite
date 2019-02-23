@@ -156,9 +156,9 @@ class BasePlugin:
 
              # Build list of Perimeter sensors, with their current status
              Heatingrequesterswitch = {}
-             devicesAPI1 = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
-             if devicesAPI1:
-                for device in devicesAPI1["result"]:  # parse the Heating requester device
+             devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+             if devicesAPI:
+                for device in devicesAPI["result"]:  # parse the Heating requester device
                     idx = int(device["idx"])
                     if idx in self.Heatingrequester:  # this is one of our Heating requester switch
                         if "Status" in device:
@@ -197,9 +197,9 @@ class BasePlugin:
         # Build list of heater switches, with their current status,
         # to be used to check if any of the heaters is already in desired state
         switches = {}
-        devicesAPI2 = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
-        if devicesAPI2:
-            for device in devicesAPI2["result"]:  # parse the switch device
+        devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+        if devicesAPI:
+            for device in devicesAPI["result"]:  # parse the switch device
                 idx = int(device["idx"])
                 if idx in self.Heaters:  # this switch is one of our heaters
                     if "Status" in device:
