@@ -296,7 +296,7 @@ def DomoticzAPI(APICall):
             Domoticz.Error("Domoticz API: http error = {}".format(response.status))
     except:
         Domoticz.Error("Error calling '{}'".format(url))
-return resultJson
+    return resultJson
 
 
 def CheckParam(name, value, default):
