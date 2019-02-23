@@ -89,7 +89,7 @@ class BasePlugin:
         devicecreated = []
         if 1 not in Devices:
             Options = {"LevelActions": "||",
-                       "LevelNames": "Off|Auto",
+                       "LevelNames": "Off|Auto|Manual",
                        "LevelOffHidden": "false",
                        "SelectorStyle": "0"}
             Domoticz.Device(Name="Boiler control", Unit=1, TypeName="Selector Switch", Switchtype=18, Image=15,
