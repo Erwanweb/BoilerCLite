@@ -19,6 +19,9 @@ Version:    0.0.1: alpha
         <param field="Password" label="Password" width="200px" required="false" default=""/>
         <param field="Mode1" label="Heating request switches (csv list of idx)" width="100px" required="true" default=""/>
         <param field="Mode2" label="Heating switch for boiler control (csv list of idx)" width="100px" required="true" default=""/>
+        <param field="Mode3" label="TRV (csv list of idx)" width="100px" required="true" default="0"/>
+        <param field="Mode4" label="Presence Sensors (csv list of idx)" width="100px" required="false" default=""/>
+        <param field="Mode5" label="Calculation cycle, Minimum Heating time per cycle, Pause On delay, Pause Off delay, Forced mode duration (all in minutes), Presence On delay, Presence Off delay" width="200px" required="true" default="30,0,2,1,60,5,60"/>
         <param field="Mode6" label="Logging Level" width="200px">
             <options>
                 <option label="Normal" value="Normal"  default="true"/>
@@ -293,7 +296,7 @@ def DomoticzAPI(APICall):
             Domoticz.Error("Domoticz API: http error = {}".format(response.status))
     except:
         Domoticz.Error("Error calling '{}'".format(url))
-    return resultJson
+return resultJson
 
 
 def CheckParam(name, value, default):
