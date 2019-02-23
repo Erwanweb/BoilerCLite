@@ -123,6 +123,10 @@ class BasePlugin:
 
         Domoticz.Debug("onCommand called for Unit {}: Command '{}', Level: {}".format(Unit, Command, Level))
 
+        if Unit == 1:  # Boiler control
+            nvalue = 1 if Level > 0 else 0
+            svalue = str(Level)
+
         Devices[Unit].Update(nValue=nvalue, sValue=svalue)
 
 
