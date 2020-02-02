@@ -119,7 +119,7 @@ class BasePlugin:
                 Domoticz.Error("Invalid on delay parameter. Using minimum of 5 minutes !")
                 self.ondelay = 5
             self.orderconfirm = CheckParam("order confirmation Delay",params[1],60)
-            if self.self.orderconfirm < 15:
+            if self.orderconfirm < 15:
                 Domoticz.Error("Invalid forced order confirmation parameter. Using minimum of 15 minutes !")
                 self.orderconfirm = 15
 
