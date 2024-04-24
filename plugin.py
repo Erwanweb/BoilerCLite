@@ -180,7 +180,7 @@ class BasePlugin:
              self.Heatingrequested = False
              # Build list of Heating requester device, with their current status
              Heatingrequesterswitch = {}
-             devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+             devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
              if devicesAPI:
                 for device in devicesAPI["result"]:  # parse the Heating requester device
                     idx = int(device["idx"])
@@ -240,7 +240,7 @@ class BasePlugin:
         # Build list of heater switches, with their current status,
         # to be used to check if any of the heaters is already in desired state
         switches = {}
-        devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+        devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
         if devicesAPI:
             for device in devicesAPI["result"]:  # parse the switch device
                 idx = int(device["idx"])
