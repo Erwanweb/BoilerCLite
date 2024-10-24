@@ -325,26 +325,33 @@ def parseCSV(strCSV):
 def DomoticzAPI(APICall):
 
     resultJson = None
-    url = "http://{}:{}/json.htm?{}".format(Parameters["Address"], Parameters["Port"], parse.quote(APICall, safe="&="))
-    Domoticz.Debug("Calling domoticz API: {}".format(url))
-    try:
-        req = request.Request(url)
-        if Parameters["Username"] != "":
-            Domoticz.Debug("Add authentification for user {}".format(Parameters["Username"]))
-            credentials = ('%s:%s' % (Parameters["Username"], Parameters["Password"]))
-            encoded_credentials = base64.b64encode(credentials.encode('ascii'))
-            req.add_header('Authorization', 'Basic %s' % encoded_credentials.decode("ascii"))
+    url = f"http://127.0.0.1:8080/json.htm?{parse.quote(APICall, safe='&=')}"
 
+    try:
+        Domoticz.Debug(f"Domoticz API request: {url}")
+        req = request.Request(url)
         response = request.urlopen(req)
+
         if response.status == 200:
             resultJson = json.loads(response.read().decode('utf-8'))
-            if resultJson["status"] != "OK":
-                Domoticz.Error("Domoticz API returned an error: status = {}".format(resultJson["status"]))
+            if resultJson.get("status") != "OK":
+                Domoticz.Error(f"Domoticz API returned an error: status = {resultJson.get('status')}")
                 resultJson = None
         else:
-            Domoticz.Error("Domoticz API: http error = {}".format(response.status))
-    except:
-        Domoticz.Error("Error calling '{}'".format(url))
+            Domoticz.Error(f"Domoticz API: HTTP error = {response.status}")
+
+    except urllib.error.HTTPError as e:
+        Domoticz.Error(f"HTTP error calling '{url}': {e}")
+
+    except urllib.error.URLError as e:
+        Domoticz.Error(f"URL error calling '{url}': {e}")
+
+    except json.JSONDecodeError as e:
+        Domoticz.Error(f"JSON decoding error: {e}")
+
+    except Exception as e:
+        Domoticz.Error(f"Error calling '{url}': {e}")
+
     return resultJson
 
 
